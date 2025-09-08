@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int is_zero(int x)
+{
+    int q;
+    int rem;
+
+    while(q !=0)
+    {
+        rem = q%10;
+        q = q/10;
+        if(rem == 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    int x=11;
+    int a;
+    a = is_zero(x);
+    printf("%d\n", a);
+}
+
