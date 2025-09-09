@@ -2,6 +2,7 @@
 
 int reverse_integer(int x)
 {
+    int num =x;
     int rem=0;
     int reverse = 0;
     if (x<0)
@@ -15,14 +16,11 @@ int reverse_integer(int x)
         reverse = 10*reverse + rem;
         x = x/10;
     }
-    if(x>0)
+    if (num <= 0)
     {
-        return reverse;
+        reverse = -reverse;
     }
-    if (x <= 0)
-    {
-        return 0 - reverse;
-    }
+    return reverse;
 }
 
 int main()
