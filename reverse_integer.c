@@ -9,7 +9,7 @@ int reverse_integer(int x)
         x = 0-x;
     }
 
-    while(x<0)
+    while(x>0)
     {
         rem = x%10;
         reverse = 10*reverse + rem;
