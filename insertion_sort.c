@@ -9,11 +9,10 @@ int array_print(int array[], int size)
     printf("\n");
 }
 
-int main()
+int insertion_sort(int arr[], int size)
 {
-    int arr[] = {7, 6, 5, 4, 3, 2};
+   // int arr[] = {7, 6, 5, 4, 3, 2};
     int i, j, key, a;
-    int size = sizeof(arr)/sizeof(arr[0]);
     for(i=0; i<size; i++)
     {
         key = arr[i];
@@ -25,9 +24,25 @@ int main()
             }
         }
         arr[j+1] = key;
-        printf("i is %d\n", i);
-        array_print(arr, size);
+       // printf("i is %d\n", i);
+      //  array_print(arr, size);
     }
-    array_print(arr, size);
+    //array_print(arr, size);
  }
+#define SIZE 100000
+int main()
+{
+    int large_arr[SIZE];
+    int  arr[] = {7, 5, 4, 3, 2, 1};
+   // int size = sizeof(arr)/sizeof(arr[0]);
+   int size = SIZE;
+    int i;
+    for(i=0; i<SIZE; i++)
+    {
+        large_arr[i] = SIZE-i;
+    }
+    insertion_sort(large_arr, size);
+    //array_print(large_arr, size);
+}
+
 
