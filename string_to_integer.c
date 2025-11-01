@@ -2,7 +2,7 @@
 
 int myAtoi(char s[])
 {
-    int i,num=0, sign=0, digit, start, end;
+    int i,num=0, sign=1, digit, start, end;
     for(i=0; s[i] != '\0'; i++)
     {
         if(s[i] == '+') sign = 1;
