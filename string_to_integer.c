@@ -3,24 +3,21 @@
 int myAtoi(char s[])
 {
     int i,num=0, sign=1, digit, start, end;
+    printf("Entered myAtoi with %s\n", s);
     for(i=0; s[i] != '\0'; i++)
     {
         if(s[i] == '+') sign = 1;
         if(s[i] == '-') sign = -1;
-        if(s[i] == '0' && s[i+1] !='0') 
+    }
+    for(i=0; s[i] != '\0'; i++)
+    {
+        if(s[i] <= '9' && s[i] >= '0')
         {
-            start = i+1;
-            break;
+            digit = s[i] - '0';
+            num = num*10 + digit;
         }
     }
-    for(i=0; s[i] != '\0'; i++);
-    end = i-1;
-    printf("Sign is %d, start is %d, end is %d\n", sign, start, end);
-    for(i=start; i<=end; i++)
-    {
-        digit = s[i] - '\0' -'0';
-        num = num*10 + digit;
-    }
+    
     return sign*num;
 }
 
@@ -29,8 +26,14 @@ int myAtoi(char s[])
 
 int main()
 {
-    char num[] = "-00042";
-    myAtoi(num);
+    char num[] = "-042";
+    char *nums[] = {"-042", "        55", "       -0056", "-0000566", "abc123", "-abc246", "234abc"};
+    int i;
     printf("%d\n", myAtoi(num));
+    for(i=0; i<sizeof(nums)/sizeof(num[0]); i++)
+    {
+        printf("%d %d\n", i, myAtoi(nums[i]));
+    }
+     
 }
 
