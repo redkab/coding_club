@@ -6,10 +6,17 @@ void board_print(char board[8][8])
     {
         for(j=0; j<8; j++)
         {
+            if(j==0)printf("%d\t",8-i);
             printf("%c ", board[i][j]);
         }
         printf("\n");
     }
+    printf(" \t");
+    for(i=0; i<8; i++)
+    {
+        printf("%c ", 'a'+i);
+    }
+    printf("\n");
 }
 void zero_set(char board[8][8])
 {
@@ -31,7 +38,7 @@ void move(char board[8][8])
     printf("Enter move\n");
     scanf("%c%d %c%d", &src_clmn, &src_row, &dest_clmn, &dest_row);
     //printf("%c%d %c%d\n", src_clmn, src_row, dest_clmn, dest_row);
-    
+
     int arr_src_row, arr_dest_row;
     int arr_src_clmn, arr_dest_clmn;
     arr_src_row = 8 - src_row;
@@ -42,7 +49,7 @@ void move(char board[8][8])
     board[arr_dest_row][arr_dest_clmn] = board[arr_src_row][arr_src_clmn];
     board[arr_src_row][arr_src_clmn] = ' ';
     board_print(board);
-    
+
 }
 void set(char board[8][8])
 {
@@ -63,7 +70,7 @@ void set(char board[8][8])
     board[7][3] = 'q';
     board[0][4] = 'K';
     board[7][4] = 'k';
- 
+
 }
 int main()
 {
@@ -71,6 +78,5 @@ int main()
     zero_set(board);
     set(board);
     board_print(board);
-    move(board);
 }
 
