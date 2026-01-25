@@ -45,17 +45,14 @@ void solve(int *arr, int n)
 int main()
 {
     int t;
-    printf("t\n");
     scanf("%d", &t);
     while(t--)
     {
         int n;
-        printf("n\n");
         scanf("%d", &n);
         int *arr = (int *)malloc(n*sizeof(int));
         for(int i=0; i<n; i++)
         {
-            printf("%d\n", i);
             scanf("%d", &arr[i]);
         }
         solve(arr, n);
