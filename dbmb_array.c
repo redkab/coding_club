@@ -19,6 +19,5 @@ int main()
         else if(((sum-s)%x)==0)printf("YES");
         else printf("NO");
         free(arr);
-        return 0;
     }
 }
