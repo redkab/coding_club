@@ -75,18 +75,18 @@ float *gradient_descent(int **data, int m, float a)
 
 int main()
 {
-    int n=6;
+    int n;
+    printf("Enter n\n");
+    scanf("%d", &n);
     int **data = (int **)malloc(n*sizeof(int *));
     for(int i=0; i<n; i++)
     {
         data[i] = (int *)malloc(2*sizeof(int));
     }
+
     for(int i=0; i<n; i++)
     {
-        for(int j=0; j<2; j++)
-        {
-            data[i][j] = i+1;
-        }
+        scanf("%d %d", &data[i][0], &data[i][1]);
     }
     print(data, n);
     float *ans = gradient_descent(data, n, 0.001);
