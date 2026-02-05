@@ -29,6 +29,6 @@ int comp(int num)
 
 int main()
 {
-    printf("%d\n", comp(1));
+    printf("%d\n", comp(2));
 }
 
