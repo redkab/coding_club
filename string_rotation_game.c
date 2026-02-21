@@ -16,6 +16,16 @@ int score(char *s, int n)
     }
     return c;
 }
+void rotate(char *s, int n)
+{
+    char buff = s[0];
+    for(int i=0; i<n; i++)
+    {
+        s[i] = s[i+1];
+    }
+    s[n] = buff;
+}
+
 
 int main()
 {
@@ -29,7 +39,15 @@ int main()
         char *s = (char *)malloc((n+1)*sizeof(char));
         scanf("%s", s);
         s[n] = '\0';
-        if(s[0] != s[n-1] && s[n-1] == s[n-2])printf("%d\n", score(s, n)+1);
-        else printf("%d\n", score(s, n));
+        int max=0, p;
+        for(int i=0; i<n; i++)
+        {
+            p = score(s,n);
+            if(p>max)max=p;
+            rotate(s,n);
+        }
+        printf("%d\n", max);
+        free(s);
     }
+
 }
