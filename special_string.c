@@ -37,10 +37,20 @@ int good(char *str, stack *s)
 
 int main()
 {
-    char str[1000];
-    scanf("%s", str);
-    struct stack s;
-    s.top=-1;
-    printf("%d\n", good(str, &s));
+    int t;
+    scanf("%d", &t);
+    while(t--)
+    {
+        int n;
+        scanf("%d", &n);
+        char *str = (char *)malloc((n+1)*sizeof(char));
+        scanf("%s", str);
+        str[n] = '\0';
+        struct stack s;
+        s.top=-1;
+        if(good(str, &s))printf("YES\n");
+        else printf("NO\n");
+        free(str);
+    }
 }
 
