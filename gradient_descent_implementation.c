@@ -14,7 +14,7 @@ float j(int **data, int m, float w, float b)
         a = f(w, b,data[i][0]) - data[i][1];
         sum += a*a;
     }
-    printf("Sum is %f\n", sum);
+    //printf("Sum is %f\n", sum);
     float ans;
     ans = ((float)sum)/((float)(2*m));
     return ans;
@@ -76,20 +76,39 @@ float *gradient_descent(int **data, int m, float a)
 int main()
 {
     int n;
-    printf("Enter n\n");
+    float w,b, error, min=1000000.0,mina;
+    printf("Enter number of points\n");
     scanf("%d", &n);
     int **data = (int **)malloc(n*sizeof(int *));
     for(int i=0; i<n; i++)
     {
         data[i] = (int *)malloc(2*sizeof(int));
     }
+    printf("Enter the points in the form of x y\n");
 
     for(int i=0; i<n; i++)
     {
         scanf("%d %d", &data[i][0], &data[i][1]);
     }
     print(data, n);
-    float *ans = gradient_descent(data, n, 0.001);
-    printf("w is %f and b is %f\n", ans[0], ans[1]);
+    for(float a=0.0001; a<0.01; a+=0.0001)
+    {
+
+        float *ans = gradient_descent(data, n, a);
+        w= ans[0], b = ans[1];
+        error = j(data, n, w, b);
+        if(error<min)
+        {
+            min = error;
+            mina = a;
+        }
+    }
+    float *ans = gradient_descent(data, n, mina);
+    printf("Most ideal line through these points is y = %fx + %f and ideal learning rate is %f\n", ans[0], ans[1], mina);
+
+
 }
+
+
+
 
