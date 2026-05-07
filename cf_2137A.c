@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<math.h>
 
 int main()
 {
@@ -9,6 +8,13 @@ int main()
     {
         int x, k;
         scanf("%d %d", &k, &x);
-        printf("%d\n", (int)(x * pow(2, k)));
+        int ans;
+        int p=1;
+        for(int i=0; i<k; i++)
+        {
+            p*=2;
+        }
+        ans = x*p;
+        printf("%d\n", ans);
     }
 }
