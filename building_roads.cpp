@@ -27,9 +27,9 @@ void bfs(vector<vector<int>>&al, vector<bool>&vis, int start, vector<vector<int>
 
 int main()
 {
-    int n, m, a, b, count;
+    int n, m, a, b, count=0;
     cin >> m >> n;
-    vector<vector<int>>al(n);
+    vector<vector<int>>al(n+1);
     for(int i=0; i<m; i++)
     {
         cin >> a >> b;
@@ -37,8 +37,8 @@ int main()
         al[b].push_back(a);
     }
     vector<vector<int>>isls;
-    vector<bool>vis(n, 0);
-    for(int i=0; i<n; i++)
+    vector<bool>vis(n+1, 0);
+    for(int i=1; i<=n; i++)
     {
         if(!vis[i])
         {
