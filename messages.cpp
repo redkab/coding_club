@@ -14,14 +14,16 @@ vector<int> bfs(vector<vector<int>>&al, vector<bool>&vis, vector<int>&par, int s
     {
         x = q.front();
         q.pop();
+        if(x==end)break;
         for(int y : al[x])
         {
+            if(!vis[y])
+            {
             vis[y] = 1;
             q.push(y);
             par[y] = x;
-            if(y==end)flag=1;
+            }
         }
-        if(flag)break;
     }
     if(!vis[end])return path;
     int t = end;
