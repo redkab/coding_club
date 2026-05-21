@@ -56,6 +56,32 @@ string bfs(vector<vector<char>>&grid, vector<vector<char>>&par, int sr, int sc, 
     }
     if(grid[er][ec] != '#')return path;
     r=er, c=ec;
+    map<char, char>mp;
+    mp['L'] = 'R';
+    mp['R'] = 'L';
+    mp['U'] = 'D';
+    mp['D'] = 'U';
+
+    while(r!=sr && c!=sc)
+    {
+        path.push_back(mp[par[r][c]]);
+        switch(par[r][c])
+        {
+            case 'U':
+                r--;
+                break;
+            case 'D':
+                r++;
+                break;
+            case 'L':
+                c--;
+                break;
+            case 'R':
+                c++;
+                break;
+        }
+    }
+    reverse(path.begin(), path.end());
     return path;
 
 }
@@ -66,7 +92,7 @@ int main()
     int m,n, sr, sc, er, ec;
     cin >> n >> m;
     vector<vector<char>>grid(n, vector<char>(m));
-    vector<vector<char>>par(n, vector<char>(m));
+    vector<vector<char>>par(n, vector<char>(m, '.'));
     for(int i=0; i<n; i++)
     {
         for(int j=0; j<m; j++)
@@ -93,6 +119,7 @@ int main()
         }
         cout<<'\n';
     }
+    cout<<"Path is"<<x;
     return 0;
 }
 
