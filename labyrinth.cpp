@@ -62,7 +62,7 @@ string bfs(vector<vector<char>>&grid, vector<vector<char>>&par, int sr, int sc, 
     mp['U'] = 'D';
     mp['D'] = 'U';
 
-    while(r!=sr && c!=sc)
+    while(!(r==sr && c==sc))
     {
         path.push_back(mp[par[r][c]]);
         switch(par[r][c])
@@ -111,15 +111,15 @@ int main()
         }
     }
     string x = bfs(grid, par, sr, sc, er, ec);
-    for(int i=0; i<n; i++)
+    int len = x.length();
+    if(!len)
     {
-        for(int j=0; j<m; j++)
-        {
-            cout<<par[i][j];
-        }
-        cout<<'\n';
+        cout<<"NO\n";
+        return 0;
     }
-    cout<<"Path is"<<x;
+    cout<<"YES\n";
+    cout<<len<<'\n';
+    cout<<x<<'\n';
     return 0;
 }
 
