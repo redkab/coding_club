@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void moveMonsters(vector<vector<char>>&grid, queue<pair<int, int>>&q)
+bool moveMonsters(vector<vector<char>>&grid, queue<pair<int, int>>&q)
 {
+    if(!q.size())return 0;
     int s = q.size();
     int r, c, nr, nc, m, n;
     m = grid.size();
@@ -19,7 +20,7 @@ void moveMonsters(vector<vector<char>>&grid, queue<pair<int, int>>&q)
         {
             nr = r + dr[i];
             nc = c + dc[i];
-            if(nr >=0 && nr<m && nc>=0 && nc<n && grid[nc][nr] != '#' && grid[nr][nc] != 'M')
+            if(nr >=0 && nr<m && nc>=0 && nc<n && grid[nr][nc] != '#' && grid[nr][nc] != 'M')
             {
                 grid[nr][nc] = 'M';
                 pair<int, int>p;
@@ -29,6 +30,7 @@ void moveMonsters(vector<vector<char>>&grid, queue<pair<int, int>>&q)
             }
         }
     }
+    return 1;
 }
 
 void printGrid(vector<vector<char>>&grid)
@@ -46,10 +48,96 @@ void printGrid(vector<vector<char>>&grid)
     cout<<'\n';
 }
 
+string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>&qp)
+{
+    int m = grid.size();
+    int n = grid[0].size();
+    int r, c, nr, nc;
+    vector<vector<char>>par(m, vector<char>(n));
+
+    queue<int>qr;
+    queue<int>qc;
+    qr.push(sr);
+    qc.push(sc);
+    grid[sr][sc] = '#';
+
+    int dr[4] = {0, 0, 1, -1};
+    int dc[4] = {1, -1, 0, 0};
+    while(!qr.empty() && !qc.empty())
+    {
+        moveMonsters(grid, qp);
+        r = qr.front();
+        c = qc.front();
+        qr.pop();
+        qc.pop();
+        if(r == 0 || r == m-1 || c == 0 || c == n-1)break;
+
+        for(int i=0; i<4; i++)
+        {
+            nr = r + dr[i];
+            nc = c + dc[i];
+
+            if(nr>=0 && nr<m && nc>=0 && nc<n && grid[nr][nc] != '#' && grid[nr][nc] != 'M')
+            {
+                qr.push(nr);
+                qc.push(nc);
+                grid[nr][nc] = '#';
+                switch(i)
+                {
+                    case 0:
+                        par[nr][nc] = 'L';
+                        break;
+                    case 1:
+                        par[nr][nc] = 'R';
+                        break;
+                    case 2:
+                        par[nr][nc] = 'U';
+                        break;
+                    case 3:
+                        par[nr][nc] = 'D';
+                        break;
+                }
+            }
+        }
+    }
+    map<char, char>mp;
+    mp['L'] = 'R';
+    mp['R'] = 'L';
+    mp['U'] = 'D';
+    mp['D'] = 'U';
+    string path;
+    while(!(r == sr && c == sc))
+    {
+        if(c == '\0')return path;
+        path.push_back(mp[par[r][c]]);
+        switch(par[r][c])
+        {
+            case 'R':
+                c++;
+                break;
+            case 'L':
+                c--;
+                break;
+            case 'U':
+                r--;
+                break;
+            case 'D':
+                r++;
+                break;
+        }
+    }
+    reverse(path.begin(), path.end());
+    return path;
+}
+
+
+
+
+
 
 int main()
 {
-    int m,n;
+    int m,n, sr, sc;
     cin >> n >> m;
     queue<pair<int, int>>q;
     vector<vector<char>>grid(n, vector<char>(m));
@@ -62,11 +150,27 @@ int main()
             {
                 q.push(make_pair(i, j));
             }
+            if(grid[i][j] == 'A')
+            {
+                sr=i;
+                sc=j;
+            }
         }
     }
-    printGrid(grid);
-    moveMonsters(grid);
-    printGrid(grid);
+    string ans = findPath(grid, sr, sc, q);
+    if(!ans.length())
+    {
+        cout<<"IMPOSSIBLE\n";
+        return 0;
+    }
+    cout<<"YES\n";
+    cout<<ans.length()<<'\n';
+    cout<<ans<<'\n';
+    return 0;
+
+
+
+    
 }
     
 
