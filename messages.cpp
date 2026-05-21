@@ -7,6 +7,7 @@ vector<int> bfs(vector<vector<int>>&al, vector<bool>&vis, vector<int>&par, int s
     vis[st] = 1;
     vector<int>path;
     int x;
+    q.push(st);
     bool flag=0;
 
     while(!q.empty())
@@ -29,6 +30,7 @@ vector<int> bfs(vector<vector<int>>&al, vector<bool>&vis, vector<int>&par, int s
         path.push_back(t);
         t = par[t];
     }
+    path.push_back(st);
     reverse(path.begin(), path.end());
     return path;
 }
