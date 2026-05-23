@@ -81,7 +81,7 @@ string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>
             {
                 qr.push(nr);
                 qc.push(nc);
-                grid[nr][nc] = '#';
+                grid[nr][nc] = 'V';
                 switch(i)
                 {
                     case 0:
