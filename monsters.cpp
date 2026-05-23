@@ -77,7 +77,7 @@ string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>
             nr = r + dr[i];
             nc = c + dc[i];
 
-            if(nr>=0 && nr<m && nc>=0 && nc<n && grid[nr][nc] != '#' && grid[nr][nc] != 'M')
+            if(nr>=0 && nr<m && nc>=0 && nc<n && grid[nr][nc] != '#' && grid[nr][nc] != 'M' && grid[nr][nc]!='V')
             {
                 qr.push(nr);
                 qc.push(nc);
@@ -99,6 +99,7 @@ string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>
                 }
             }
         }
+        printGrid(grid);
     }
     string emp;
     if(!(r == 0 || r == m-1 || c == 0 || c == n-1))return emp;
@@ -143,12 +144,15 @@ int main()
     int m,n, sr, sc;
     cin >> n >> m;
     queue<pair<int, int>>q;
+    int k=0;
+    //string maze = "#########.....A##.#######......##.####.##....#.##.##.#.##..M.#.#";
     vector<vector<char>>grid(n, vector<char>(m));
     for(int i=0; i<n; i++)
     {
         for(int j=0; j<m; j++)
         {
             cin>>grid[i][j];
+      //      grid[i][j] = maze[k++];
             if(grid[i][j] == 'M')
             {
                 q.push(make_pair(i, j));
@@ -163,7 +167,7 @@ int main()
     string ans = findPath(grid, sr, sc, q);
     if(!ans.length())
     {
-        cout<<"IMPOSSIBLE\n";
+        cout<<"NO\n";
         return 0;
     }
     cout<<"YES\n";
