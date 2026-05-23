@@ -100,6 +100,9 @@ string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>
             }
         }
     }
+    string emp;
+    if(!(r == 0 || r == m-1 || c == 0 || c == n-1))return emp;
+
     map<char, char>mp;
     mp['L'] = 'R';
     mp['R'] = 'L';
