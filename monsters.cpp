@@ -99,7 +99,7 @@ string findPath(vector<vector<char>>&grid, int sr, int sc, queue<pair<int, int>>
                 }
             }
         }
-        printGrid(grid);
+        //printGrid(grid);
     }
     string emp;
     if(!(r == 0 || r == m-1 || c == 0 || c == n-1))return emp;
