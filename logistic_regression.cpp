@@ -13,22 +13,30 @@ float dp(vector<float>&a, vector<float>&b)
     return sum;
 }
 
+float z(vector<float>&w, float b, vector<float>&x)
+{
+    return dp(w, x)+b;
+}
+
 float f(vector<float>&w, float b, vector<float>&x)
 {
-    return dp(w, x) + b;
+    float p = pow(2.71828, -z(w, b, x));
+    return 1/(1+p);
 }
 
 float j(vector<vector<float>>&x, vector<float>&w, vector<float>&y, float b)
 {
     int m = x.size();
-    float s=0;
-    float diff;
-    for(int i=0; i<m; i++)
+    float s = 0.0f;
+
+    for(int i = 0; i < m; i++)
     {
-        diff = f(w, b, x[i]) - y[i];
-        s += diff*diff;
+        float pred = f(w, b, x[i]);
+        pred = max(1e-7f, min(pred, 1.0f - 1e-7f));
+        s += -y[i] * log(pred) - (1 - y[i]) * log(1 - pred);
     }
-    return s/(2.0f * m);
+
+    return s / m;
 }
 
 float djk(vector<vector<float>>&x, vector<float>&w, float b, vector<float>&y, int k)
@@ -65,10 +73,10 @@ vector<float> gradDesc(vector<vector<float>>&x, vector<float>&y)
     vector<float>temp(n, 0.00);
     for(int i=0; i<100000; i++)
     {
-        if(i%1000==0)
+        if(i%100==0)
         {
-            //cout<<"Running iteration "<<i<<'\n';
-            //cout<<"Current cost is "<<j(x, w, y, b);
+            cout<<"Running iteration "<<i<<'\n';
+            cout<<"Current cost is "<<j(x, w, y, b)<<'\n';
         }
         for(int k=0; k<n; k++)
         {
@@ -110,4 +118,4 @@ int main()
     }
     vector<float>params = gradDesc(x, y);
     printParams(params);
-}   
+}
