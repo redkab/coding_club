@@ -33,8 +33,8 @@ int main()
         for(int i=0; i<m; i++)
         {
             cin>>u>>v;
-            al[u].push_back(v);
-            al[v].push_back(u);
+            al[u-1].push_back(v-1);
+            al[v-1].push_back(u-1);
         }
         count(al);
     }
