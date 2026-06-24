@@ -1,30 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool exists(int key, unordered_map<int, int>m)
-{
-    auto it = m.find(key);
-    return !(it == m.end());
-}
 void count(vector<vector<int>>&al)
 {
-    unordered_map<int, int>m;
+    int leaf=0, x=0;
+    int n = al.size();
     for(int i=0; i<al.size(); i++)
     {
-        if(!exists(al[i].size(), m))
-        {
-            m[al[i].size()] = 1;
-        }
-        else m[al[i].size()]++;
+        if(al[i].size() ==  1)leaf++;
     }
-    int x, leaf=0, y;
-    for(const auto& [a, b] : m)
-    {
-        if(b==1)x=a;
-    }
-    int n = al.size();
-    y = (n-1)/x - 1;
-
+    x = n - leaf - 1;
+    int y = leaf/x;
     cout<<x<<' '<<y<<'\n';
 }
 
