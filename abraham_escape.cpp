@@ -13,10 +13,31 @@ vector<char>loopLine(int n)
     return v;
 }
 
-vector<char>parLoop(int n, int i)
+vector<char>fullLine(int n)
 {
-    if(i==n-1)return {'D'};
-    return loopLine(n-i);
+    vector<char>v(n, 'U');
+    return v;
+}
+
+vector<char>parLoop(int n, int s)
+{
+    vector<char>v(n);
+    for(int i =0; i<s; i++)
+    {
+        v[i] = 'U';
+    }
+    if(s==n-1)
+    {
+        v[n-1] = 'D';
+        return v;
+    }
+    int j=0;
+    vector<char>p = loopLine(n-s);
+    for(int i=s; i<n; i++)
+    {
+        v[i] = p[j++];
+    }
+    return v;
 }
 
 void printVec(vector<char>&g)
@@ -39,34 +60,21 @@ void printGrid(vector<vector<char>>&g)
 vector<vector<char>>makeGrid(int n, int k)
 {
     cout<<"Entered\n";
-    vector<vector<char>>grid(n, vector<char>(n));
-    if(k==n*n - 1)return grid;
-    int c=0, i=0, j=0;
-    while(c<k)
+    vector<vector<char>>grid(n);
+    if(k == n-1)return grid;
+
+    for(int i=0; i<k/n; i++)
     {
-        grid[i][j] = 'U';
-        cout<<"Filled "<<i<<' '<<j<<'\n';
-        if(j != n-1)j++;
-        else
-        {
-            i++;
-            j=0;
-        }
-        c++;
+        grid[i] = fullLine(n);
     }
-    //printGrid(grid);
-    vector<char>par = parLoop(n, j);
-    //printVec(par);
-    for(int x=0; x<par.size(); x++)
+
+    grid[k/n] = parLoop(n, k%n);
+    for(int i= k/n +1; i<n; i++)
     {
-        grid[i][j++] = par[x];
-    }
-    i++;
-    for(int curr = i; curr<n; curr++)
-    {
-        grid[curr] = loopLine(n);
+        grid[i] = loopLine(n);
     }
     return grid;
+
 }
 
 
