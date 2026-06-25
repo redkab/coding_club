@@ -61,15 +61,15 @@ vector<vector<char>>makeGrid(int n, int k)
 {
     cout<<"Entered\n";
     vector<vector<char>>grid(n);
-    if(k == n-1)return grid;
+    if(k == n*n-1)return grid;
 
-    for(int i=0; i<k/n; i++)
+    for(int i=0; i<k/n*n; i++)
     {
         grid[i] = fullLine(n);
     }
 
-    grid[k/n] = parLoop(n, k%n);
-    for(int i= k/n +1; i<n; i++)
+    grid[k/n*n] = parLoop(n, k%n*n);
+    for(int i= k/n*n +1; i<n; i++)
     {
         grid[i] = loopLine(n);
     }
