@@ -59,36 +59,50 @@ void printGrid(vector<vector<char>>&g)
 
 vector<vector<char>>makeGrid(int n, int k)
 {
-    cout<<"Entered\n";
     vector<vector<char>>grid(n);
-    if(k == n*n-1)return grid;
+    if(n*n == k+1)return grid;
+    /*cout<<"Entered\n";
+      cout<<"Full "<<k/(n)<<'\n';
+      cout<<"Par "<<k%(n)<<'\n';*/
 
-    for(int i=0; i<k/n*n; i++)
+    for(int i=0; i< k/(n); i++)
     {
         grid[i] = fullLine(n);
     }
-
-    grid[k/n*n] = parLoop(n, k%n*n);
-    for(int i= k/n*n +1; i<n; i++)
+    grid[k/(n)] = parLoop(n, k%(n));
+    for(int i=k/(n) +1; i<n; i++)
     {
         grid[i] = loopLine(n);
     }
     return grid;
-
 }
 
 
 int main()
 {
-    int n, k;
-    cin>>n>>k;
-    vector<vector<char>>g = makeGrid(n, k);
-    if(g.size()==0)cout<<"NO\n";
-    else
+    int t;
+    cin>>t;
+    while(t--)
     {
-        cout<<"YES\n";
-        printGrid(g);
+
+        int n, k;
+        cin>>n>>k;
+        vector<vector<char>>g = makeGrid(n, k);
+        if(g[0].size()==0)cout<<"NO\n";
+        else
+        {
+            cout<<"YES\n";
+            printGrid(g);
+        }
     }
+    /*vector<char>x = parLoop(5, 2);
+      printVec(x);
+      x = parLoop(5, 4);
+      printVec(x);
+      x = loopLine(5);
+      printVec(x);
+      x = loopLine(6);
+      printVec(x);*/
     return 0;
 }
 
