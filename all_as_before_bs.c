@@ -15,7 +15,7 @@ int a_checker(char arr[], int size)
 
 int main()
 {
-    char arr[] = "bbbbb";
+    char arr[] = "aaabbb";
     int size = sizeof(arr)/sizeof(arr[0]) -1;
     printf("%d\n", a_checker(arr, size));
 }

@@ -18,5 +18,5 @@ int money(int n)
 
 int main()
 {
-    printf("%d\n", money(10)); 
+    printf("%d\n", money(20)); 
 }

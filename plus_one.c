@@ -27,7 +27,7 @@ int* plus(int* digits, int size, int* returnSize) {
     if(ans[0]==0)
     {
         printf("return size is %d\n", *returnSize);
-        *returnSize--;
+        (*returnSize)--;
         printf("return size is %d\n", *returnSize);
         //*returnSize=size;
         return &(ans[1]);

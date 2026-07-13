@@ -60,8 +60,8 @@ int main()
         }
         if(a[i] == '+' || a[i] == '-' || a[i] == '*' || a[i] == '/')
         {
-            pop(&s, &x);
             pop(&s, &y);
+            pop(&s, &x);
             //printf("Popped %d and %d\n", x, y);
             //print(&s);
             switch(a[i])

@@ -10,7 +10,7 @@ int main()
     int win;
     printf("How many points to win?\n");
     scanf("%d", &win);
-    while(1)
+    while(comp_score<win && player_score < win)
     {
         
         printf("Enter r, p or s\n");

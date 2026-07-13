@@ -6,12 +6,12 @@ void board_print(char board[8][8])
     {
         for(j=0; j<8; j++)
         {
-            if(j==0)printf("%d\t",8-i);
+            if(j==0)printf("%d  ",8-i);
             printf("%c ", board[i][j]);
         }
         printf("\n");
     }
-    printf(" \t");
+    printf("\n   ");
     for(i=0; i<8; i++)
     {
         printf("%c ", 'a'+i);

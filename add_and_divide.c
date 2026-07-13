@@ -13,7 +13,7 @@ int main()
         var = i*log(i)*log(i);
         if(var > ok)
         {
-            printf("%lld\n", i);
+            //printf("%lld\n", i);
             break;
         }
     }

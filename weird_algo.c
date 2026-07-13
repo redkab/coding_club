@@ -3,11 +3,11 @@
 
 int main()
 {
-    int n;
-    scanf("%d", &n);
+    unsigned long long int n;
+    scanf("%llu", &n);
     while(n!=1)
     {
-        printf("%d ", n);
+        printf("%llu ", n);
         if(n%2)n = 3*n + 1;
         else n = n/2;
     }

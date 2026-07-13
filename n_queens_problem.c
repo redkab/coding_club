@@ -31,11 +31,11 @@ int push(struct stack *s, int x, int y)
 
 int pop(struct stack *s, int *x, int *y)
 {
-    printf("Entered with top = %d\n", s->top);
+    //printf("Entered with top = %d\n", s->top);
     if(isEmpty(s))return 0;
     *x = s->arr[s->top][0];
     *y = s->arr[(s->top)--][1];
-    printf("Exited with top = %d\n", s->top);
+    //printf("Exited with top = %d\n", s->top);
     return 1;
 }
 
@@ -137,7 +137,7 @@ void undo_and_move(int **board,int n, struct stack *s)
 {
     int row, col;
     pop(s, &row, &col);
-    printf("Popped row = %d and col = %d\n", row, col);
+    //printf("Popped row = %d and col = %d\n", row, col);
     board[row][col] = 0;
     if(col+1 <n)
     {
@@ -157,7 +157,7 @@ void n_queens(int **board, struct stack *s, int n)
     }
 
     int start = empty(board, n);
-    printf("Start row is %d\n", start);
+    //printf("Start row is %d\n", start);
     for(int i=0; i<n; i++)
     {
         if(safe(board, n, start, i))
@@ -167,9 +167,9 @@ void n_queens(int **board, struct stack *s, int n)
             n_queens(board, s, n);
         }
     }
-    printf("Undoing\n");
+    //printf("Undoing\n");
     undo_and_move(board,n, s);
-    stack_print(s);
+    //stack_print(s);
     print(board, n);
     n_queens(board, s, n);
 }
@@ -178,7 +178,7 @@ int main()
 
     struct stack s;
     init(&s);
-    int n=8;
+    int n=4;
     int **board = (int **)calloc(n, sizeof(int *));
     for(int i=0; i<n; i++)
     {

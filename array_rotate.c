@@ -27,18 +27,18 @@ int sort_check(int arr[], int size)
             
 int main()
 {
-    int arr[] = {};
+    int arr[] = {4, 1, 2, 3};
     int size = sizeof(arr)/sizeof(arr[0]);
     int i;
     for(i=0; i<size; i++)
     {
-        if(sort_check(arr))
+        if(sort_check(arr, size) == 1)
         {
             printf("Yes\n");
         }
-        if( sort_check(arr) == 0)
+        if( sort_check(arr, size) == 0)
         {
-            array_rotate(arr);
+            array_rotate(arr, size);
         }
         
     }
