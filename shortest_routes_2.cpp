@@ -40,8 +40,8 @@ int main()
     {
         ll a, b, c;
         cin>>a>>b>>c;
-        v[a][b] = c;
-        v[b][a] = c;
+        v[a][b] = min(v[a][b], c);
+        v[b][a] = min(v[a][b], c);
     }
     solve(v, q);
 }
